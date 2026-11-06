@@ -7,6 +7,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Termos de Consentimento</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone-192.png">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 /* Paleta: Neblina Perene (Evergreen Fog, SW 9130) */
 :root{--fog:#8d9a80;--fog-d:#667357;--fog-dd:#4c5741;--fog-l:#eef0e8;--fog-xl:#fbfaf7;--card:#fff;--ink:#2b2f27;--muted:#7a776f;--line:#e5dfd4;--bege:#d4c3b1;--bege-l:#f6f0e8;--warn:#a2401f;--ok:#4c7341;--ok-l:#e8f0e3}
@@ -4054,6 +4057,7 @@ function admBackup(){
 }
 
 /* ---------- Início ---------- */
+if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 (async()=>{
   try{await abrirDB();await semear();if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});inicio();enviarPendentes().catch(()=>{})}
   catch(e){view(`<main class="wrap"><h1>Não foi possível iniciar</h1><p>O navegador bloqueou o armazenamento local (${esc(e&&e.message||e)}). Abra o arquivo em um navegador comum, fora do modo anônimo.</p></main>`)}
